@@ -1,3 +1,8 @@
+.App {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
 div.remirror-theme .ProseMirror {
   min-height: auto;
   padding: 0px 10px;
@@ -8,17 +13,13 @@ div.remirror-theme .ProseMirror {
 
 div.remirror-theme .ProseMirror:focus,
 div.remirror-theme .ProseMirror:active {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-.remirror-floating-popover {
-    z-index: 1;
+div.remirror-theme .ProseMirror .remirror-floating-popover {
+  z-index: 1;
 }
 
-.remirror-theme  {
-    margin-bottom: 10px;
-}
-
-.remirror-theme .remirror-editor-wrapper {
-    padding: 0;
+.remirror-theme {
+  margin-bottom: 10px;
 }

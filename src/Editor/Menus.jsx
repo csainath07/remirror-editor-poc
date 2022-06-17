@@ -3,31 +3,13 @@ import {
   useChainedCommands,
   FloatingWrapper,
 } from "@remirror/react";
-import { useEffect } from "react";
 
 export const Menus = (props) => {
   const active = useActive();
   const chain = useChainedCommands();
 
-  useEffect(() => {
-    switch (props.defaultTag) {
-      case "h1":
-        chain?.toggleHeading({ level: 1 })?.focus()?.run();
-        break;
-      case "h2":
-        chain?.toggleHeading({ level: 2 })?.focus()?.run();
-        break;
-      case "h3":
-        chain?.toggleHeading({ level: 3 })?.focus()?.run();
-        break;
-      default:
-        break;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.defaultTag]);
-
   return (
-    <FloatingWrapper positioner={props.positioner} placement="top">
+    <FloatingWrapper positioner={props.positioner} placement="bottom">
       <button
         onClick={() => {
           chain.toggleBold().focus().run();

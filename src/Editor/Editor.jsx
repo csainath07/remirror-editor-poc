@@ -5,40 +5,28 @@ import {
   selectionPositioner,
   PlaceholderExtension,
   HeadingExtension,
+  HardBreakExtension,
 } from "remirror/extensions";
 import {
   useRemirror,
   Remirror,
-  EditorComponent,
-  useEvent,
-  useKeymap,
+  useKeymaps,
+  useRemirrorContext,
+  useChainedCommands,
 } from "@remirror/react";
+
 import { prosemirrorNodeToHtml } from "remirror";
 import { Menus } from "./Menus";
-
-const hooks = ({ event }) => [
-  () => {
-    useEvent("keyup", event.keyUp);
-  },
-  () => {
-    useKeymap("Enter", (e) => {
-      event?.enter();
-      return true;
-    });
-  },
-  () => {
-    useKeymap("Shift-Enter", (e) => false);
-  },
-];
 
 export const Editor = ({
   placeholder = "Write here...",
   onChange = () => {},
   onKeyUp = () => {},
   onEnter = () => {},
+  onCommand = () => {},
   initialContent = "",
   editable = true,
-  defaultTag = "p",
+  blockId = null,
   ...rest
 }) => {
   const { manager, state, setState } = useRemirror({
@@ -47,6 +35,7 @@ export const Editor = ({
       new ItalicExtension(),
       new UnderlineExtension(),
       new HeadingExtension(),
+      new HardBreakExtension(),
       new PlaceholderExtension({ placeholder }),
     ],
     content: initialContent,
@@ -66,18 +55,42 @@ export const Editor = ({
           }
           setState(parameter.state);
         }}
-        hooks={hooks({
-          event: {
-            keyUp: onKeyUp,
-            enter: onEnter,
-          },
-        })}
         autoFocus={true}
         {...rest}
       >
-        <Menus positioner={selectionPositioner} defaultTag={defaultTag} />
-        <EditorComponent />
+        <Menus positioner={selectionPositioner} />
+        <EditorBindings
+          events={{
+            keyUp: onKeyUp,
+            enter: onEnter,
+            command: onCommand,
+          }}
+          blockId={blockId}
+        />
       </Remirror>
     </div>
   );
+};
+
+// Handling Keyboard Events
+export const EditorBindings = ({ events, blockId }) => {
+  const { getRootProps } = useRemirrorContext({ autoUpdate: false });
+  const chain = useChainedCommands();
+
+  useKeymaps({
+    Enter: () => {
+      events?.enter?.();
+      return true;
+    },
+    "Shift-Enter": () => {
+      chain?.insertHardBreak().focus().run();
+      return true;
+    },
+    "/": () => {
+      events?.command?.({ blockId });
+      return true;
+    },
+  });
+
+  return <div {...getRootProps()} />;
 };
