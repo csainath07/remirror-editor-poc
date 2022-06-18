@@ -19,7 +19,3 @@ div.remirror-theme .ProseMirror:active {
 div.remirror-theme .ProseMirror .remirror-floating-popover {
   z-index: 1;
 }
-
-.remirror-theme {
-  margin-bottom: 10px;
-}

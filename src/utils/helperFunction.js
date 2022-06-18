@@ -33,7 +33,7 @@ export const addNewBlocks = ({
   return _blocks;
 };
 
-export const getCursorCoordinates = () => {
+export const getCursorCoordinates = (boundedElementId = "") => {
   let x = 0;
   let y = 0;
   const selection = window.getSelection();
@@ -45,19 +45,34 @@ export const getCursorCoordinates = () => {
       x = rect.top;
       y = rect.left;
     }
+
+    if (x === 0 && y === 0) {
+      let elementCoordinates = document
+        .getElementById(boundedElementId)
+        .getBoundingClientRect();
+      x = elementCoordinates.top;
+      y = elementCoordinates.left;
+    }
   }
   return { x, y };
+};
+
+export const getMouseClickCoordinates = (e) => {
+  return {
+    x: e?.clientX || null,
+    y: e?.clientY || null,
+  };
 };
 
 export const getActiveBlockIndex = (blocks = [], id = null) => {
   return blocks.findIndex((block) => block.id === id);
 };
 
-export const handleCommandPopupOpen = (cb, unMountCb) => {
-  const { x, y } = getCursorCoordinates();
-  cb?.({ x, y });
-  document.addEventListener("click", () => {
-    unMountCb?.();
-    document.removeEventListener("click", handleCommandPopupOpen);
-  });
+export const handleCommandPopupUnmount = (cb) => {
+  const removeClickEvent = () => {
+    console.log("called");
+    cb?.();
+    document.removeEventListener("click", removeClickEvent);
+  };
+  document.addEventListener("click", removeClickEvent);
 };

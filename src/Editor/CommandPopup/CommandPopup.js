@@ -81,6 +81,8 @@ const CommandPopup = ({ commandPopupPosition, onCommandSelect }) => {
         top: commandPopupPosition.x,
         left: commandPopupPosition.y,
       }}
+      tabIndex="0"
+      id="commandPopup"
     >
       <dl>
         {Object.keys(COMMANDS).map((key) => {

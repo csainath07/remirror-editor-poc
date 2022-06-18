@@ -27,6 +27,7 @@ export const Editor = ({
   initialContent = "",
   editable = true,
   blockId = null,
+  id = "",
   ...rest
 }) => {
   const { manager, state, setState } = useRemirror({
@@ -44,7 +45,7 @@ export const Editor = ({
   });
 
   return (
-    <div className="remirror-theme">
+    <div className="remirror-theme" id={id}>
       <Remirror
         editable={editable}
         manager={manager}

@@ -1,0 +1,40 @@
+.editableBlockContainer {
+  margin: 0 0 15px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.contentBlockContainer {
+  width: 100%;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.editableBlockContainer:hover .blockOptions {
+  visibility: visible;
+}
+
+.blockOptions {
+  min-width: 50px;
+  margin-right: 10px;
+  padding: 5px 0 0;
+  visibility: hidden;
+  color: #808080;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.blockOptions svg {
+  margin-left: 8px;
+}
+
+svg.addBlockIcon:hover {
+  color: #000;
+}
+
+svg.removeBlockIcon:hover {
+  color: #f00;
+}
