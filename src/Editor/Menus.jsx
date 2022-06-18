@@ -9,7 +9,7 @@ export const Menus = (props) => {
   const chain = useChainedCommands();
 
   return (
-    <FloatingWrapper positioner={props.positioner} placement="bottom">
+    <FloatingWrapper positioner={props.positioner} placement="right">
       <button
         onClick={() => {
           chain.toggleBold().focus().run();

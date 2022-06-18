@@ -5,7 +5,7 @@
 
 div.remirror-theme .ProseMirror {
   min-height: auto;
-  padding: 0px 10px;
+  padding: 0px;
   box-shadow: none;
   border-radius: 0;
   overflow: visible;
