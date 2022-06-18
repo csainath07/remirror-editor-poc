@@ -4,13 +4,15 @@ export const uid = () => {
   return Date.now().toString(36) + Math.random().toString(36);
 };
 
-export const EMPTY_BLOCK = (tag = "p") => {
+export const EMPTY_BLOCK = (options) => {
   return {
     id: uid(),
-    defaultTag: tag || "p",
-    type: CONTENT_TYPE["HTML"],
+    defaultTag: options?.tag || "p",
+    type: options?.type || CONTENT_TYPE["HTML"],
     content: {
       html: "",
+      imageEmbedUrl: "",
+      videoEmbedUrl: "",
     },
   };
 };

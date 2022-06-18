@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Plus, Trash2 } from "react-feather";
 import CommandPopup from "./CommandPopup/CommandPopup";
 import { Editor } from "./Editor";
+import { ImageBlock, VideoBlock, AudioBlock } from "./MediaBlocks";
 import { CONTENT_TYPE } from "../utils/constant";
 import {
   EMPTY_BLOCK,
@@ -68,14 +69,29 @@ const EditorPage = ({
   };
 
   const handleCommandSelect = (command) => {
+    const currentBlockIndex = getActiveBlockIndex(
+      blocks,
+      commandPopup.activeBlockId
+    );
+
     switch (command.type) {
+      case CONTENT_TYPE["IMAGE"]:
+      case CONTENT_TYPE["VIDEO"]:
+      case CONTENT_TYPE["AUDIO"]:
+        insertNewBlock(
+          currentBlockIndex,
+          blocks,
+          EMPTY_BLOCK({ tag: command.tag, type: command.type }),
+          true
+        );
+        break;
       case CONTENT_TYPE["HTML"]:
       default:
-        const currentBlockIndex = getActiveBlockIndex(
+        insertNewBlock(
+          currentBlockIndex,
           blocks,
-          commandPopup.activeBlockId
+          EMPTY_BLOCK({ tag: command.tag })
         );
-        insertNewBlock(currentBlockIndex, blocks, EMPTY_BLOCK(command.tag));
         break;
     }
   };
@@ -93,6 +109,42 @@ const EditorPage = ({
 
   const renderBlocks = (block, index) => {
     switch (block.type) {
+      case CONTENT_TYPE["IMAGE"]:
+        return (
+          <ImageBlock
+            data={block}
+            onEmbedLinkSubmit={({ key, embedLink }) => {
+              updateBlocks(
+                { ...block, content: { ...block.content, [key]: embedLink } },
+                index
+              );
+            }}
+          />
+        );
+      case CONTENT_TYPE["VIDEO"]:
+        return (
+          <VideoBlock
+            data={block}
+            onEmbedLinkSubmit={({ key, embedLink }) => {
+              updateBlocks(
+                { ...block, content: { ...block.content, [key]: embedLink } },
+                index
+              );
+            }}
+          />
+        );
+      case CONTENT_TYPE["AUDIO"]:
+        return (
+          <AudioBlock
+            data={block}
+            onEmbedLinkSubmit={({ key, embedLink }) => {
+              updateBlocks(
+                { ...block, content: { ...block.content, [key]: embedLink } },
+                index
+              );
+            }}
+          />
+        );
       case CONTENT_TYPE["HTML"]:
       default:
         return (
@@ -123,13 +175,20 @@ const EditorPage = ({
   const insertNewBlock = (
     currentBlockIndex = 0,
     blocks = [],
-    newBlock = {}
+    newBlock = {},
+    addExtraBlock = false
   ) => {
     let _blocks = addNewBlocks({
       blocks: [...blocks],
       newBlock: newBlock,
       currentBlockIndex: currentBlockIndex,
+      addExtraBlock,
     });
+    onChange(_blocks);
+  };
+
+  const deleteBlock = (deleteBlockId) => {
+    const _blocks = blocks.filter((block) => block.id !== deleteBlockId);
     onChange(_blocks);
   };
 
@@ -151,7 +210,11 @@ const EditorPage = ({
               }}
             />
             {isDeleteOptionVisible ? (
-              <Trash2 size={16} className={Styles.removeBlockIcon} />
+              <Trash2
+                size={16}
+                className={Styles.removeBlockIcon}
+                onClick={() => deleteBlock(block.id)}
+              />
             ) : null}
           </div>
           <div className={Styles.contentBlockContainer}>

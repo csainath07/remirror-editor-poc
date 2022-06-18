@@ -1,5 +1,5 @@
 export const CONTENT_TYPE = {
-  HTML: "HTML",
+  HTML: "html",
   IMAGE: "image",
   VIDEO: "video",
   AUDIO: "audio",
