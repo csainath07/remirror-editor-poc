@@ -3,6 +3,7 @@
   padding-bottom: 20%;
   position: relative;
   background-color: var(--border---light);
+  border-radius: 0px 0px 15px 15px;
 }
 
 .updateCoverUploader {
