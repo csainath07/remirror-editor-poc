@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Input, Button} from 'antd';
 import { Volume2 } from "react-feather";
 import Styles from "./_.module.css";
 
@@ -31,15 +32,15 @@ const AudioBlock = ({ data, onEmbedLinkSubmit }) => {
           </div>
           <div className={Styles.body}>
             <Volume2 size={30} />
-            <input
+            <Input
               type="text"
               onChange={(e) => setEmbedLink(e.target?.value?.trim())}
               value={embedLink}
               placeholder="Enter any audio url from web"
             />
-            <button onClick={onSubmitHandler} type="button">
+            <Button onClick={onSubmitHandler} type="button">
               Embed Link
-            </button>
+            </Button>
 
             <span className={Styles.note}>Works with any audio from web</span>
           </div>

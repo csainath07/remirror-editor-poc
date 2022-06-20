@@ -8,6 +8,7 @@
 
 .contentBlockContainer {
   width: 100%;
+  max-width: 800px;
   background: transparent;
   position: relative;
   z-index: 1;
@@ -31,14 +32,15 @@
 
 .blockOptions svg {
   margin-left: 8px;
+  fill: var(--neutral-dark-mode---label);
 }
 
 svg.addBlockIcon:hover {
-  color: #000;
+  fill: #000;
 }
 
 svg.removeBlockIcon:hover {
-  color: #f00;
+  fill: #f00;
 }
 
 svg.moveIcon:hover {

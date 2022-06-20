@@ -1,0 +1,139 @@
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url("../assets/fonts/Poppins-Regular.ttf"); /* weight: 400 */
+  }
+  
+  @font-face {
+    font-family: "Poppins-Medium";
+    src: url("../assets/fonts/Poppins-Medium.ttf"); /* weight: 500 */
+  }
+  
+  @font-face {
+    font-family: "Poppins-Bold";
+    src: url("../assets/fonts/Poppins-Bold.ttf"); /* weight: 700 */
+  }
+  
+  @font-face {
+    font-family: "Poppins-Light-Italic";
+    src: url("../assets/fonts/Poppins-LightItalic.ttf"); /* weight: 300 (italic) */
+  }
+  
+  :root {
+    /* Font Family */
+    --font-family-poppins-regular-with-fallback: "Poppins-Regular", "Roboto",
+      "Open Sans", Helvetica, Arial, sans-serif;
+    --font-family-poppins-medium-with-fallback: "Poppins-Medium", "Roboto",
+      "Open Sans", Helvetica, Arial, sans-serif;
+    --font-family-poppins-bold-with-fallback: "Poppins-Bold", "Roboto",
+      "Open Sans", Helvetica, Arial, sans-serif;
+    --font-family-poppins-light-italic-with-fallback: "Poppins-Light-Italic",
+      "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+    /* Color styles */
+    --background---dark: #f6f8f9;
+    --background---light: #ffffff;
+    --background---medium: #fafafa;
+    --background-dark-mode---dark: #212528;
+    --background-dark-mode---light: #272b2e;
+    --background-dark-mode---medium: #212327;
+    --border----dark: #d9dbdf;
+    --border---light: #f2f5fa;
+    --border---medium: #e8e8ef;
+    --border-dark-mode----dark: #4f4f52;
+    --border-dark-mode---light: #3a3b3c;
+    --border-dark-mode---medium: #48494b;
+    --error---main-200: #ffcccc;
+    --error---main-500: #ff0000;
+    --error-dark-mode---main-200: #ffcccc;
+    --error-dark-mode---main-500: #ff4b3a;
+    --figma--default---main-500: #7b61ff;
+    --figma--default-dark-mode---main-500: #7b61ff;
+    --neutral---label: #9dadbc;
+    --neutral---text1: #3f4756;
+    --neutral---text2: #657899;
+    --neutral-dark-mode---label: #8e9094;
+    --neutral-dark-mode---text1: #feffff;
+    --neutral-dark-mode---text2: #e4e6eb;
+    --other--colors---violet: #7c69b5;
+    --other--colors---yellow: #e4d176;
+    --other--colors-dark-mode---violet: #7c69b5;
+    --other--colors-dark-mode---yellow: #e4d176;
+    --primary---main-200: #ebfef5;
+    --primary---main-500: #3cc68a;
+    --primary-dark-mode---main-200: #ebfef5;
+    --primary-dark-mode---main-500: #3cc68a;
+    --secondary---main-200: #e9bacf;
+    --secondary---main-500: #e93f8b;
+    --secondary-dark-mode---main-200: #e9bacf;
+    --secondary-dark-mode---main-500: #e93f8b;
+    --shade---dark: #505f88;
+    --shade---light: #d9dbdf;
+    --shade-dark-mode---dark: #0d0d0d;
+    --shade-dark-mode---light: #0d0d0d;
+    --success---main-200: #ebfef5;
+    --success---main-500: #3cc68a;
+    --success-dark-mode---main-200: #ebfef5;
+    --success-dark-mode---main-500: #3cc68a;
+    --warning---main-200: #ffe7cc;
+    --warning---main-500: #ff8800;
+    --warning-dark-mode---main-200: #ffe7cc;
+    --warning-dark-mode---main-500: #ff8800;
+    /* Text-size styles */
+    --display---d1---bold: 40px;
+    --display---d1---medium: 40px;
+    --display---d1---regular: 40px;
+    --display---d1---uppercase-m: 40px;
+    --display---d2---bold: 35px;
+    --display---d2---medium: 35px;
+    --display---d2---regular: 35px;
+    --display---d2---uppercase-m: 35px;
+    --heading---h1---bold: 30px;
+    --heading---h1---medium: 30px;
+    --heading---h1---regular: 30px;
+    --heading---h1---uppercase-m: 30px;
+    --heading---h2---bold: 25px;
+    --heading---h2---medium: 25px;
+    --heading---h2---regular: 25px;
+    --heading---h2---uppercase-m: 25px;
+    --heading---h3---bold: 20px;
+    --heading---h3---medium: 20px;
+    --heading---h3---regular: 20px;
+    --heading---h3---uppercase-m: 20px;
+    --heading---h4---bold: 18px;
+    --heading---h4---medium: 18px;
+    --heading---h4---regular: 18px;
+    --heading---h4---uppercase-m: 18px;
+    --less--important--info---bold: 10px;
+    --less--important--info---italic: 10px;
+    --less--important--info---medium: 10px;
+    --less--important--info---regular: 10px;
+    --less--important--info---uppercase-m: 10px;
+    --paragraph---p1---bold: 16px;
+    --paragraph---p1---italic: 16px;
+    --paragraph---p1---medium: 16px;
+    --paragraph---p1---regular: 16px;
+    --paragraph---p1---uppercase-m: 16px;
+    --paragraph---p2---bold: 14px;
+    --paragraph---p2---italic: 14px;
+    --paragraph---p2---medium: 14px;
+    --paragraph---p2---regular: 14px;
+    --paragraph---p2---underline-r: 14px;
+    --paragraph---p2---uppercase-m: 14px;
+    --paragraph---p3---bold: 12px;
+    --paragraph---p3---italic: 12px;
+    --paragraph---p3---medium: 12px;
+    --paragraph---p3---regular: 12px;
+    --paragraph---p3---underline-r: 12px;
+    --paragraph---p3---uppercase-m: 12px;
+    /* Effect styles */
+    --box--shadow---cards: 0px 3px 16px rgba(80, 95, 136, 0.07);
+    --box--shadow---filter--dropdowns: 0px 3px 15px rgba(80, 95, 136, 0.1);
+    --box--shadow---header--dropdowns: 0px 3px 16px rgba(217, 219, 223, 0.65);
+    --box--shadow---table--column-1: 10px 2px 15px rgba(80, 95, 136, 0.04);
+    --box--shadow-dark-mode---cards: 0px 3px 16px rgba(13, 13, 13, 0.3);
+    --box--shadow-dark-mode---filter--dropdowns: 0px 3px 15px
+      rgba(13, 13, 13, 0.3);
+    --box--shadow-dark-mode---header--dropdowns: 0px 3px 16px
+      rgba(13, 13, 13, 0.4);
+    --box--shadow-dark-mode---table--column-1: 10px 2px 15px rgba(13, 13, 13, 0.3);
+  }
+  

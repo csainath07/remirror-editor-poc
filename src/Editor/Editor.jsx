@@ -28,6 +28,8 @@ export const Editor = ({
   editable = true,
   blockId = null,
   id = "",
+  singleLine = false,
+  formatting = true,
   ...rest
 }) => {
   const { manager, state, setState } = useRemirror({
@@ -59,7 +61,7 @@ export const Editor = ({
         autoFocus={true}
         {...rest}
       >
-        <Menus positioner={selectionPositioner} />
+        {formatting ? <Menus positioner={selectionPositioner} /> : null}
         <EditorBindings
           events={{
             keyUp: onKeyUp,
@@ -67,6 +69,7 @@ export const Editor = ({
             command: onCommand,
           }}
           blockId={blockId}
+          singleLine={singleLine}
         />
       </Remirror>
     </div>
@@ -74,7 +77,7 @@ export const Editor = ({
 };
 
 // Handling Keyboard Events
-export const EditorBindings = ({ events, blockId }) => {
+export const EditorBindings = ({ events, blockId, singleLine }) => {
   const { getRootProps } = useRemirrorContext({ autoUpdate: false });
   const chain = useChainedCommands();
 
@@ -84,7 +87,9 @@ export const EditorBindings = ({ events, blockId }) => {
       return true;
     },
     "Shift-Enter": () => {
-      chain?.insertHardBreak().focus().run();
+      if (!singleLine) {
+        chain?.insertHardBreak().focus().run();
+      }
       return true;
     },
     "/": () => {

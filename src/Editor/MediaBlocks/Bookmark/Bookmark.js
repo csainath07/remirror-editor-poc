@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Bookmark } from "react-feather";
+import {Input, Button} from 'antd';
 import BookmarkPreview from "./BookmarkPreview";
 import Styles from "./_.module.css";
 
@@ -59,15 +60,15 @@ const BookmarkBlock = ({ data, onEmbedLinkSubmit }) => {
             ) : (
               <>
                 <Bookmark size={30} />
-                <input
+                <Input
                   type="text"
                   onChange={(e) => setEmbedLink(e.target?.value?.trim())}
                   value={embedLink}
                   placeholder="Enter any url from web"
                 />
-                <button onClick={onSubmitHandler} type="button">
+                <Button onClick={onSubmitHandler} type="button">
                   Embed Link
-                </button>
+                </Button>
 
                 <span className={Styles.note}>Works with any url from web</span>
               </>

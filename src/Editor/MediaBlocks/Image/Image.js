@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Input, Button} from 'antd';
 import { Image } from "react-feather";
 import Styles from "./_.module.css";
 
@@ -30,15 +31,15 @@ const ImageBlock = ({ data, onEmbedLinkSubmit }) => {
           </div>
           <div className={Styles.body}>
             <Image size={30} />
-            <input
+            <Input
               type="text"
               onChange={(e) => setEmbedLink(e.target?.value?.trim())}
               value={embedLink}
               placeholder="Enter any image url from web"
             />
-            <button onClick={onSubmitHandler} type="button">
+            <Button onClick={onSubmitHandler} type="button">
               Embed Link
-            </button>
+            </Button>
 
             <span className={Styles.note}>Works with any image from web</span>
           </div>

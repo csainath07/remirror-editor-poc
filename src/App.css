@@ -3,15 +3,18 @@
   margin: 0 auto;
 }
 
+.cover-photo {
+  margin-bottom: 20px;
+}
+
 div.remirror-theme .ProseMirror {
   min-height: auto;
   padding: 0px;
   box-shadow: none;
   border-radius: 0;
   overflow: visible;
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 14px;
+  font-family: var(--font-family-poppins-regular-with-fallback);
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -22,4 +25,38 @@ div.remirror-theme .ProseMirror:active {
 
 div.remirror-theme .ProseMirror .remirror-floating-popover {
   z-index: 2;
+}
+
+.remirror-is-empty:first-of-type::before {
+  font-style: normal;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.title div.remirror-theme {
+  width: 90%;
+  margin: 0 0 0 calc(10% + 10px);
+}
+
+.title div.remirror-theme .ProseMirror {
+  font-family: var(--font-family-poppins-bold-with-fallback);
+  font-size: 30px;
+  line-height: 45px;
+}
+
+.short-description {
+  margin-bottom: 15px;
+}
+
+.short-description div.remirror-theme {
+  width: 90%;
+  margin: 0 0 0 calc(10% + 10px);
+}
+
+.short-description div.remirror-theme .ProseMirror {
+  font-family: var(--font-family-poppins-regular-with-fallback);
+  font-size: 16px;
+  line-height: 24px;
 }

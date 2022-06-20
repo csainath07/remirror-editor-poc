@@ -1,0 +1,42 @@
+.coverPhotoUploaderContainer {
+  width: 100%;
+  padding-bottom: 20%;
+  position: relative;
+  background-color: var(--border---light);
+}
+
+.updateCoverUploader {
+  display: block;
+  color: var(--neutral---label);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--background---light);
+  background-color: var(--background---dark);
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.updateCoverUploader :global(.ant-upload) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadText {
+  color: var(--neutral---text2);
+  font-family: var(--font-family-poppins-regular-with-fallback);
+  font-size: var(--paragraph---p2---regular);
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadText svg {
+  fill: var(--neutral---label);
+}

@@ -1,19 +1,50 @@
 import { useState } from "react";
+import { Editor } from './Editor/Editor';
 import EditorPage from "./Editor/EditorPage";
+import { CoverUploader } from './ui'
 import { EMPTY_BLOCK } from "./utils/helperFunction";
 
 import "remirror/styles/all.css";
+import 'antd/dist/antd.variable.min.css';
+import "./styles/variables.css";
 import "./App.css";
 
 export default function App() {
-  const [blocks, setBlocks] = useState([EMPTY_BLOCK()]);
+  const [details, setDetails] = useState({
+    cover: '',
+    title: '',
+    shortDescription: "",
+    blocks: [EMPTY_BLOCK()]
+  });
 
   return (
     <div className="App">
+      <div className="cover-photo">
+        <CoverUploader editable/>
+      </div>
+      <div className="title">
+        <Editor
+          placeholder="Untitled"
+          initialContent={details.title}
+          onChange={(value) => setDetails({ ...details, title: value })}
+          singleLine
+          formatting={false}
+        />
+      </div>
+      <div className="short-description">
+        <Editor
+          placeholder="Short description"
+          initialContent={details.shortDescription}
+          onChange={(value) => setDetails({ ...details, shortDescription: value })}
+        />
+      </div>
       <EditorPage
-        blocks={blocks}
-        onChange={(updatedBlocks) => setBlocks(updatedBlocks)}
-        isDeleteOptionVisible={blocks.length > 1}
+        blocks={details.blocks}
+        onChange={(updatedBlocks) => setDetails({
+          ...details,
+          blocks: updatedBlocks
+        })}
+        isDeleteOptionVisible={details.blocks.length > 1}
       />
     </div>
   );

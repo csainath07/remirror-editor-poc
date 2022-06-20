@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Move } from "react-feather";
+import { Icon } from "../ui";
 import { ReactSortable } from "react-sortablejs";
 import CommandPopup from "./CommandPopup/CommandPopup";
 import { Editor } from "./Editor";
@@ -217,8 +217,9 @@ const EditorPage = ({
         {blocks.map((block, index) => (
           <div className={Styles.editableBlockContainer} key={block.id}>
             <div className={Styles.blockOptions}>
-              <Plus
+              <Icon
                 size={16}
+                icon="plusLine"
                 className={Styles.addBlockIcon}
                 onClick={(e) => {
                   const { x, y } = getMouseClickCoordinates(e);
@@ -231,12 +232,13 @@ const EditorPage = ({
               />
               {isDeleteOptionVisible ? (
                 <>
-                  <Trash2
+                  <Icon
+                    icon="dustbinFill"
                     size={16}
                     className={Styles.removeBlockIcon}
                     onClick={() => deleteBlock(block.id)}
                   />
-                  <Move size={16} className={Styles.moveIcon} />
+                  <Icon icon="dragFill" size={16} className={Styles.moveIcon} />
                 </>
               ) : null}
             </div>

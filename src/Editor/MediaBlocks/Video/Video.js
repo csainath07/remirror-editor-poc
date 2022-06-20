@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-escape */
 import { useState } from "react";
 import { Film } from "react-feather";
+import {Input, Button} from 'antd';
 import Styles from "./_.module.css";
 
 const VideoBlock = ({ data, onEmbedLinkSubmit }) => {
@@ -45,15 +46,15 @@ const VideoBlock = ({ data, onEmbedLinkSubmit }) => {
           </div>
           <div className={Styles.body}>
             <Film size={30} />
-            <input
+            <Input
               type="text"
               onChange={(e) => setEmbedLink(e.target?.value?.trim())}
               value={embedLink}
               placeholder="Enter any video url from web"
             />
-            <button onClick={onSubmitHandler} type="button">
+            <Button onClick={onSubmitHandler} type="button">
               Embed Link
-            </button>
+            </Button>
 
             <span className={Styles.note}>Works with any video from web</span>
           </div>
