@@ -9,6 +9,10 @@ div.remirror-theme .ProseMirror {
   box-shadow: none;
   border-radius: 0;
   overflow: visible;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 div.remirror-theme .ProseMirror:focus,

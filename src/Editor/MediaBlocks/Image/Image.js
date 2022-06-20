@@ -25,6 +25,7 @@ const ImageBlock = ({ data, onEmbedLinkSubmit }) => {
           <div className={Styles.header}>
             <ul>
               <li className={Styles.active}>Embed Link</li>
+              <li className={''}>Upload</li>
             </ul>
           </div>
           <div className={Styles.body}>

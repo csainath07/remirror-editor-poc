@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2 } from "react-feather";
+import { Plus, Trash2, Move } from "react-feather";
+import { ReactSortable } from "react-sortablejs";
 import CommandPopup from "./CommandPopup/CommandPopup";
 import { Editor } from "./Editor";
-import { ImageBlock, VideoBlock, AudioBlock } from "./MediaBlocks";
+import {
+  ImageBlock,
+  VideoBlock,
+  AudioBlock,
+  BookmarkBlock,
+} from "./MediaBlocks";
 import { CONTENT_TYPE } from "../utils/constant";
 import {
   EMPTY_BLOCK,
@@ -43,7 +49,7 @@ const EditorPage = ({
                 y: null,
               },
             });
-          }, 10);
+          }, 100);
         });
       } else {
         popup?.removeEventListener("blur", () => {
@@ -55,7 +61,7 @@ const EditorPage = ({
                 y: null,
               },
             });
-          }, 10);
+          }, 100);
         });
       }
     },
@@ -78,6 +84,7 @@ const EditorPage = ({
       case CONTENT_TYPE["IMAGE"]:
       case CONTENT_TYPE["VIDEO"]:
       case CONTENT_TYPE["AUDIO"]:
+      case CONTENT_TYPE["BOOKMARK"]:
         insertNewBlock(
           currentBlockIndex,
           blocks,
@@ -145,6 +152,18 @@ const EditorPage = ({
             }}
           />
         );
+      case CONTENT_TYPE["BOOKMARK"]:
+        return (
+          <BookmarkBlock
+            data={block}
+            onEmbedLinkSubmit={({ key, embedLink }) => {
+              updateBlocks(
+                { ...block, content: { ...block.content, [key]: embedLink } },
+                index
+              );
+            }}
+          />
+        );
       case CONTENT_TYPE["HTML"]:
       default:
         return (
@@ -194,36 +213,40 @@ const EditorPage = ({
 
   return (
     <div className="editor-page-container">
-      {blocks.map((block, index) => (
-        <div className={Styles.editableBlockContainer} key={block.id}>
-          <div className={Styles.blockOptions}>
-            <Plus
-              size={16}
-              className={Styles.addBlockIcon}
-              onClick={(e) => {
-                const { x, y } = getMouseClickCoordinates(e);
-                handleCommandPopup({
-                  blockId: block.id,
-                  x: y + 10,
-                  y: x + 10,
-                });
-              }}
-            />
-            {isDeleteOptionVisible ? (
-              <Trash2
+      <ReactSortable list={blocks} setList={onChange}>
+        {blocks.map((block, index) => (
+          <div className={Styles.editableBlockContainer} key={block.id}>
+            <div className={Styles.blockOptions}>
+              <Plus
                 size={16}
-                className={Styles.removeBlockIcon}
-                onClick={() => deleteBlock(block.id)}
+                className={Styles.addBlockIcon}
+                onClick={(e) => {
+                  const { x, y } = getMouseClickCoordinates(e);
+                  handleCommandPopup({
+                    blockId: block.id,
+                    x: y + 10,
+                    y: x + 10,
+                  });
+                }}
               />
-            ) : null}
+              {isDeleteOptionVisible ? (
+                <>
+                  <Trash2
+                    size={16}
+                    className={Styles.removeBlockIcon}
+                    onClick={() => deleteBlock(block.id)}
+                  />
+                  <Move size={16} className={Styles.moveIcon} />
+                </>
+              ) : null}
+            </div>
+            <div className={Styles.contentBlockContainer}>
+              {/* Render different type of content block */}
+              {renderBlocks(block, index)}
+            </div>
           </div>
-          <div className={Styles.contentBlockContainer}>
-            {/* Render different type of content block */}
-            {renderBlocks(block, index)}
-          </div>
-        </div>
-      ))}
-
+        ))}
+      </ReactSortable>
       {commandPopup?.isOpen ? (
         <CommandPopup
           commandPopupPosition={commandPopup?.position}
