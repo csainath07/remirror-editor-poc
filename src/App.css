@@ -27,6 +27,30 @@ div.remirror-theme .ProseMirror .remirror-floating-popover {
   z-index: 2;
 }
 
+div.remirror-floating-popover {
+  background-color: var(--background---light);
+  border: 1px solid var(--border----dark);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+div.remirror-floating-popover button {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.remirror-floating-popover button:hover {
+  background: var(--primary---main-500);
+  color: var(--background---light);
+}
+
 .remirror-is-empty:first-of-type::before {
   font-style: normal;
 }

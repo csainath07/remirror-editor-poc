@@ -3,6 +3,7 @@ import {
   useChainedCommands,
   FloatingWrapper,
 } from "@remirror/react";
+import { Bold, Italic, Underline } from "react-feather";
 
 export const Menus = (props) => {
   const active = useActive();
@@ -14,25 +15,34 @@ export const Menus = (props) => {
         onClick={() => {
           chain.toggleBold().focus().run();
         }}
-        style={{ fontWeight: active.bold() ? "bold" : undefined }}
+        style={{
+          background: active.bold() ? "#ff4856" : undefined,
+          color: active.bold() ? "#fff" : undefined,
+        }}
       >
-        B
+        <Bold size={16} />
       </button>
       <button
         onClick={() => {
           chain.toggleItalic().focus().run();
         }}
-        style={{ fontWeight: active.italic() ? "bold" : undefined }}
+        style={{
+          background: active.italic() ? "#ff4856" : undefined,
+          color: active.italic() ? "#fff" : undefined,
+        }}
       >
-        I
+        <Italic size={16} />
       </button>
       <button
         onClick={() => {
           chain.toggleUnderline().focus().run();
         }}
-        style={{ fontWeight: active.underline() ? "bold" : undefined }}
+        style={{
+          background: active.underline() ? "#ff4856" : undefined,
+          color: active.underline() ? "#fff" : undefined,
+        }}
       >
-        <u>U</u>
+        <Underline size={16} />
       </button>
     </FloatingWrapper>
   );
