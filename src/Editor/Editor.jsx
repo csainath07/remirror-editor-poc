@@ -92,9 +92,9 @@ export const EditorBindings = ({ events, blockId, singleLine }) => {
       }
       return true;
     },
-    "/": () => {
+    "Mod-/": () => {
       events?.command?.({ blockId });
-      return true;
+      return false;
     },
   });
 

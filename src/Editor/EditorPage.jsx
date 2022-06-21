@@ -21,7 +21,7 @@ import {
 import Styles from "./Editor.module.css";
 
 const EditorPage = ({
-  placeholder = "Type '/' for commands",
+  placeholder = "Type 'Ctrl + / or Cmd + /' for commands",
   onChange = () => {},
   blocks = [],
   isDeleteOptionVisible = false,

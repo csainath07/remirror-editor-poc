@@ -14,7 +14,7 @@ div.remirror-theme .ProseMirror {
   border-radius: 0;
   overflow: visible;
   font-family: var(--font-family-poppins-regular-with-fallback);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
 }
 
@@ -61,6 +61,7 @@ div.remirror-floating-popover button:hover {
 
 .title div.remirror-theme {
   width: 90%;
+  max-width: 800px;
   margin: 0 0 0 calc(10% + 10px);
 }
 
@@ -76,6 +77,7 @@ div.remirror-floating-popover button:hover {
 
 .short-description div.remirror-theme {
   width: 90%;
+  max-width: 800px;
   margin: 0 0 0 calc(10% + 10px);
 }
 
