@@ -13,6 +13,11 @@ export const EMPTY_BLOCK = (options) => {
       html: "",
       imageEmbedUrl: "",
       videoEmbedUrl: "",
+      bookmarkEmbedUrl: "",
+      codeSnippet: {
+        code: '',
+        language: ''
+      }
     },
   };
 };

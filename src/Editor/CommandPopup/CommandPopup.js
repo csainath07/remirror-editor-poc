@@ -1,4 +1,4 @@
-import { Type, Image, Film, Volume2, Bookmark } from "react-feather";
+import { Type, Image, Film, Volume2, Bookmark, Terminal } from "react-feather";
 import { CONTENT_TYPE } from "../../utils/constant";
 import Styles from "./_.module.css";
 
@@ -14,6 +14,19 @@ const COMMANDS = {
         subText: "Just start writing with pain text",
         tag: "p",
         type: CONTENT_TYPE["HTML"],
+      },
+    ],
+  },
+  code: {
+    title: "Code",
+    options: [
+      {
+        id: "command-basic_code",
+        icon: <Terminal size={20} />,
+        label: "Code Snippet",
+        subText: "Capture a code snippet",
+        tag: "code",
+        type: CONTENT_TYPE["CODE_SNIPPET"],
       },
     ],
   },

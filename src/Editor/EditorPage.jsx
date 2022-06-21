@@ -8,6 +8,7 @@ import {
   VideoBlock,
   AudioBlock,
   BookmarkBlock,
+  CodeSnippetBlock,
 } from "./MediaBlocks";
 import { CONTENT_TYPE } from "../utils/constant";
 import {
@@ -85,6 +86,7 @@ const EditorPage = ({
       case CONTENT_TYPE["VIDEO"]:
       case CONTENT_TYPE["AUDIO"]:
       case CONTENT_TYPE["BOOKMARK"]:
+      case CONTENT_TYPE["CODE_SNIPPET"]:
         insertNewBlock(
           currentBlockIndex,
           blocks,
@@ -159,6 +161,43 @@ const EditorPage = ({
             onEmbedLinkSubmit={({ key, embedLink }) => {
               updateBlocks(
                 { ...block, content: { ...block.content, [key]: embedLink } },
+                index
+              );
+            }}
+          />
+        );
+      case CONTENT_TYPE["CODE_SNIPPET"]:
+        return (
+          <CodeSnippetBlock
+            data={block}
+            readOnly={false}
+            onCodeChange={(value) => {
+              updateBlocks(
+                {
+                  ...block,
+                  content: {
+                    ...block.content,
+                    codeSnippet: {
+                      ...block.content.codeSnippet,
+                      code: value,
+                    },
+                  },
+                },
+                index
+              );
+            }}
+            onLanguageChange={(value) => {
+              updateBlocks(
+                {
+                  ...block,
+                  content: {
+                    ...block.content,
+                    codeSnippet: {
+                      ...block.content.codeSnippet,
+                      language: value,
+                    },
+                  },
+                },
                 index
               );
             }}
