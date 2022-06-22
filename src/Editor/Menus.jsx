@@ -1,11 +1,12 @@
+import { memo } from "react";
 import {
   useActive,
   useChainedCommands,
-  FloatingWrapper,
+  FloatingWrapper
 } from "@remirror/react";
 import { Bold, Italic, Underline } from "react-feather";
 
-export const Menus = (props) => {
+const Menus = (props) => {
   const active = useActive();
   const chain = useChainedCommands();
 
@@ -47,3 +48,5 @@ export const Menus = (props) => {
     </FloatingWrapper>
   );
 };
+
+export default memo(Menus)

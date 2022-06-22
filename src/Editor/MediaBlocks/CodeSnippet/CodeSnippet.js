@@ -1,5 +1,5 @@
 import { Input, Select } from 'antd';
-import { CodeBlock, dracula } from "react-code-blocks";
+import { CodeBlock, a11yDark } from "react-code-blocks";
 
 import { SupportedLanguages } from '../../../utils/constant';
 
@@ -15,7 +15,12 @@ const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, readOnly = fal
                 text={data?.content?.codeSnippet?.code || ''}
                 language={data?.content?.codeSnippet?.language || SupportedLanguages?.[0]}
                 showLineNumbers={true}
-                theme={dracula}
+                theme={a11yDark}
+                customStyle={{
+                    height: '250px',
+                    overflowY: 'scroll',
+                    borderRadius: '0px',
+                  }}
             />
             {
                 !readOnly ? (
@@ -24,7 +29,7 @@ const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, readOnly = fal
                             placeholder='Write your code here...'
                             value={data?.content?.codeSnippet?.code || ''}
                             onChange={(e) => onCodeChange?.(e.target.value || '')}
-                            autoSize={{ minRows: 2, maxRows: 6 }}
+                            autoSize={{ minRows: 4, maxRows: 6 }}
                         />
                         <Select
                             style={{ width: 200 }}

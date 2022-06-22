@@ -16,6 +16,7 @@ div.remirror-theme .ProseMirror {
   font-family: var(--font-family-poppins-regular-with-fallback);
   font-size: 14px;
   line-height: 24px;
+  color: var(--neutral---text1);
 }
 
 div.remirror-theme .ProseMirror:focus,

@@ -22,7 +22,7 @@ import {
 import Styles from "./Editor.module.css";
 
 const EditorPage = ({
-  placeholder = "Type 'Ctrl + / or Cmd + /' for commands",
+  placeholder = "Type '/' for commands",
   onChange = () => {},
   blocks = [],
   isDeleteOptionVisible = false,
@@ -225,6 +225,7 @@ const EditorPage = ({
               handleCommandPopup({ blockId, x, y });
             }}
             blockId={block?.id}
+            defaultTag={block.defaultTag || "p"}
           />
         );
     }

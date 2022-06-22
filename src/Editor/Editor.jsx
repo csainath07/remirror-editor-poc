@@ -12,11 +12,11 @@ import {
   Remirror,
   useKeymaps,
   useRemirrorContext,
-  useChainedCommands,
+  useChainedCommands
 } from "@remirror/react";
 
 import { prosemirrorNodeToHtml } from "remirror";
-import { Menus } from "./Menus";
+import Menus from "./Menus";
 
 export const Editor = ({
   placeholder = "Write here...",
@@ -30,6 +30,7 @@ export const Editor = ({
   id = "",
   singleLine = false,
   formatting = true,
+  defaultTag = "p",
   ...rest
 }) => {
   const { manager, state, setState } = useRemirror({
@@ -41,6 +42,7 @@ export const Editor = ({
       new HardBreakExtension(),
       new PlaceholderExtension({ placeholder }),
     ],
+    builtin: { persistentSelectionClass: 'selection' },
     content: initialContent,
     selection: "end",
     stringHandler: "html",
@@ -61,7 +63,9 @@ export const Editor = ({
         autoFocus={true}
         {...rest}
       >
-        {formatting ? <Menus positioner={selectionPositioner} /> : null}
+        {formatting ? (
+          <Menus defaultTag={defaultTag} positioner={selectionPositioner} />
+        ) : null}
         <EditorBindings
           events={{
             keyUp: onKeyUp,
@@ -92,9 +96,9 @@ export const EditorBindings = ({ events, blockId, singleLine }) => {
       }
       return true;
     },
-    "Mod-/": () => {
+    "/": () => {
       events?.command?.({ blockId });
-      return false;
+      return true;
     },
   });
 
