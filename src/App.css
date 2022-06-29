@@ -29,7 +29,7 @@ div.remirror-theme .ProseMirror .remirror-floating-popover {
 }
 
 div.remirror-floating-popover {
-  background-color: var(--background---light);
+  background-color: var(--background-dark-mode---light);
   border: 1px solid var(--border----dark);
   border-radius: 5px;
   display: flex;
@@ -38,6 +38,7 @@ div.remirror-floating-popover {
 }
 
 div.remirror-floating-popover button {
+  color: var(--background---light);
   background: transparent;
   border: none;
   padding: 5px 10px;

@@ -5,7 +5,10 @@ import {
   selectionPositioner,
   PlaceholderExtension,
   HeadingExtension,
+  NodeFormattingExtension,
   HardBreakExtension,
+  CodeExtension,
+  BlockquoteExtension
 } from "remirror/extensions";
 import {
   useRemirror,
@@ -40,6 +43,9 @@ export const Editor = ({
       new UnderlineExtension(),
       new HeadingExtension(),
       new HardBreakExtension(),
+      new NodeFormattingExtension(),
+      new CodeExtension(),
+      new BlockquoteExtension(),
       new PlaceholderExtension({ placeholder }),
     ],
     builtin: { persistentSelectionClass: 'selection' },
@@ -86,7 +92,7 @@ export const EditorBindings = ({ events, blockId, singleLine }) => {
   const chain = useChainedCommands();
 
   useKeymaps({
-    Enter: () => {
+    "Alt-c": () => {
       events?.enter?.();
       return true;
     },

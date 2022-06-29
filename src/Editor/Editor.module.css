@@ -46,3 +46,14 @@ svg.removeBlockIcon:hover {
 svg.moveIcon:hover {
   cursor: move;
 }
+
+.headingMenus button {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.headingMenus button:hover {
+  background: transparent;
+  box-shadow: none;
+}
