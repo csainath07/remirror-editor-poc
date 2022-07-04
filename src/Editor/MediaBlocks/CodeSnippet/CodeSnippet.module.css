@@ -1,0 +1,11 @@
+.codeContainer :global(.ant-select) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    transition: all ease-in .2s;
+}
+
+.codeSnippetContainer:hover :global(.ant-select) {
+    display: block;
+}

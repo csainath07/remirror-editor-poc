@@ -1,13 +1,14 @@
 /* eslint-disable no-useless-escape */
 import { useState } from "react";
-import { Film } from "react-feather";
-import {Input, Button} from 'antd';
+import { RiVideoLine } from "react-icons/ri";
+import { Input, Button } from 'antd';
 import Styles from "./_.module.css";
 
 const VideoBlock = ({ data, onEmbedLinkSubmit }) => {
   const [embedLink, setEmbedLink] = useState(
     data?.content?.videoEmbedUrl || ""
   );
+  const [showPopup, setShowPopup] = useState(true);
 
   /** Private Method */
   const _checkAndGetYoutubeEmbedUrl = (url) => {
@@ -37,27 +38,37 @@ const VideoBlock = ({ data, onEmbedLinkSubmit }) => {
           src={data?.content?.videoEmbedUrl}
         ></iframe>
       ) : (
-        <div className={Styles.videoActionSection}>
-          <div className={Styles.header}>
-            <ul>
-              <li className={Styles.active}>Embed Link</li>
-              <li className={''}>Upload</li>
-            </ul>
+        <div className={Styles.mediaBlockContainer}>
+          <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
+            <RiVideoLine size={25} />
+            <p>Add a video</p>
           </div>
-          <div className={Styles.body}>
-            <Film size={30} />
-            <Input
-              type="text"
-              onChange={(e) => setEmbedLink(e.target?.value?.trim())}
-              value={embedLink}
-              placeholder="Enter any video url from web"
-            />
-            <Button onClick={onSubmitHandler} type="button">
-              Embed Link
-            </Button>
+          {
+            showPopup ? (
+              <div className={Styles.videoActionSection}>
+                <div className={Styles.header}>
+                  <ul>
+                    <li className={Styles.active}>Embed Link</li>
+                    <li className={''}>Upload</li>
+                  </ul>
+                </div>
+                <div className={Styles.body}>
+                  <RiVideoLine size={30} />
+                  <Input
+                    type="text"
+                    onChange={(e) => setEmbedLink(e.target?.value?.trim())}
+                    value={embedLink}
+                    placeholder="Enter any video url from web"
+                  />
+                  <Button onClick={onSubmitHandler} type="button">
+                    Embed Link
+                  </Button>
 
-            <span className={Styles.note}>Works with any video from web</span>
-          </div>
+                  <span className={Styles.note}>Works with any video from web</span>
+                </div>
+              </div>
+            ) : null
+          }
         </div>
       )}
     </div>

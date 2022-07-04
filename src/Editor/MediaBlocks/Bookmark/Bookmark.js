@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Bookmark } from "react-feather";
-import {Input, Button} from 'antd';
+import { RiBookmarkLine } from "react-icons/ri";
+import { Input, Button } from 'antd';
 import BookmarkPreview from "./BookmarkPreview";
 import Styles from "./_.module.css";
 
@@ -10,6 +10,7 @@ const BookmarkBlock = ({ data, onEmbedLinkSubmit }) => {
   );
   const [loading, setLoading] = useState(false);
   const [linkMetaData, setLinkMetaData] = useState(null);
+  const [showPopup, setShowPopup] = useState(true);
 
   const onSubmitHandler = async () => {
     if (embedLink !== "") {
@@ -46,34 +47,44 @@ const BookmarkBlock = ({ data, onEmbedLinkSubmit }) => {
           url={data?.content?.bookmarkEmbedUrl}
         />
       ) : (
-        <div className={Styles.bookmarkActionSection}>
-          <div className={Styles.header}>
-            <ul>
-              <li className={Styles.active}>Embed Link</li>
-            </ul>
+        <div className={Styles.mediaBlockContainer}>
+          <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
+            <RiBookmarkLine size={25} />
+            <p>Add a bookmark</p>
           </div>
-          <div className={Styles.body}>
-            {loading ? (
-              <div>
-                <span>Loading...</span>
-              </div>
-            ) : (
-              <>
-                <Bookmark size={30} />
-                <Input
-                  type="text"
-                  onChange={(e) => setEmbedLink(e.target?.value?.trim())}
-                  value={embedLink}
-                  placeholder="Enter any url from web"
-                />
-                <Button onClick={onSubmitHandler} type="button">
-                  Embed Link
-                </Button>
+          {
+            showPopup ? (
+              <div className={Styles.bookmarkActionSection}>
+                <div className={Styles.header}>
+                  <ul>
+                    <li className={Styles.active}>Embed Link</li>
+                  </ul>
+                </div>
+                <div className={Styles.body}>
+                  {loading ? (
+                    <div>
+                      <span>Loading...</span>
+                    </div>
+                  ) : (
+                    <>
+                      <RiBookmarkLine size={30} />
+                      <Input
+                        type="text"
+                        onChange={(e) => setEmbedLink(e.target?.value?.trim())}
+                        value={embedLink}
+                        placeholder="Enter any url from web"
+                      />
+                      <Button onClick={onSubmitHandler} type="button">
+                        Embed Link
+                      </Button>
 
-                <span className={Styles.note}>Works with any url from web</span>
-              </>
-            )}
-          </div>
+                      <span className={Styles.note}>Works with any url from web</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            ) : null
+          }
         </div>
       )}
     </div>

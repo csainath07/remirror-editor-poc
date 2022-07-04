@@ -1,12 +1,13 @@
 import { useState } from "react";
-import {Input, Button} from 'antd';
-import { Volume2 } from "react-feather";
+import { Input, Button } from 'antd';
+import { RiVolumeUpLine } from "react-icons/ri";
 import Styles from "./_.module.css";
 
 const AudioBlock = ({ data, onEmbedLinkSubmit }) => {
   const [embedLink, setEmbedLink] = useState(
     data?.content?.audioEmbedUrl || ""
   );
+  const [showPopup, setShowPopup] = useState(true);
 
   const onSubmitHandler = () => {
     if (embedLink !== "") {
@@ -23,27 +24,37 @@ const AudioBlock = ({ data, onEmbedLinkSubmit }) => {
           controls
         />
       ) : (
-        <div className={Styles.audioActionSection}>
-          <div className={Styles.header}>
-            <ul>
-              <li className={Styles.active}>Embed Link</li>
-              <li className={''}>Upload</li>
-            </ul>
+        <div className={Styles.mediaBlockContainer}>
+          <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
+            <RiVolumeUpLine size={25} />
+            <p>Add an audio</p>
           </div>
-          <div className={Styles.body}>
-            <Volume2 size={30} />
-            <Input
-              type="text"
-              onChange={(e) => setEmbedLink(e.target?.value?.trim())}
-              value={embedLink}
-              placeholder="Enter any audio url from web"
-            />
-            <Button onClick={onSubmitHandler} type="button">
-              Embed Link
-            </Button>
+          {
+            showPopup ? (
+              <div className={Styles.audioActionSection}>
+                <div className={Styles.header}>
+                  <ul>
+                    <li className={Styles.active}>Embed Link</li>
+                    <li className={''}>Upload</li>
+                  </ul>
+                </div>
+                <div className={Styles.body}>
+                  <RiVolumeUpLine size={30} />
+                  <Input
+                    type="text"
+                    onChange={(e) => setEmbedLink(e.target?.value?.trim())}
+                    value={embedLink}
+                    placeholder="Enter any audio url from web"
+                  />
+                  <Button onClick={onSubmitHandler} type="button">
+                    Embed Link
+                  </Button>
 
-            <span className={Styles.note}>Works with any audio from web</span>
-          </div>
+                  <span className={Styles.note}>Works with any audio from web</span>
+                </div>
+              </div>
+            ) : null
+          }
         </div>
       )}
     </div>

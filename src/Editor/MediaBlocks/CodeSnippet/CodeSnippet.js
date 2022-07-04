@@ -24,7 +24,7 @@ const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, readOnly = fal
             />
             {
                 !readOnly ? (
-                    <>
+                    <div className={Styles.codeContainer}>
                         <TextArea
                             placeholder='Write your code here...'
                             value={data?.content?.codeSnippet?.code || ''}
@@ -41,7 +41,7 @@ const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, readOnly = fal
                                 SupportedLanguages?.map((lang) => <Option key={lang} value={lang}>{lang}</Option>)
                             }
                         </Select>
-                    </>
+                    </div>
                 ) : null
             }
         </div>

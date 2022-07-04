@@ -1,12 +1,13 @@
 import { useState } from "react";
-import {Input, Button} from 'antd';
-import { Image } from "react-feather";
+import { Input, Button } from 'antd';
+import { RiImage2Line } from "react-icons/ri";
 import Styles from "./_.module.css";
 
 const ImageBlock = ({ data, onEmbedLinkSubmit }) => {
   const [embedLink, setEmbedLink] = useState(
     data?.content?.imageEmbedUrl || ""
   );
+  const [showPopup, setShowPopup] = useState(true);
 
   const onSubmitHandler = () => {
     if (embedLink !== "") {
@@ -22,27 +23,37 @@ const ImageBlock = ({ data, onEmbedLinkSubmit }) => {
           className={Styles.imagePreview}
         />
       ) : (
-        <div className={Styles.imageActionSection}>
-          <div className={Styles.header}>
-            <ul>
-              <li className={Styles.active}>Embed Link</li>
-              <li className={''}>Upload</li>
-            </ul>
+        <div className={Styles.mediaBlockContainer}>
+          <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
+            <RiImage2Line size={25} />
+            <p>Add an image</p>
           </div>
-          <div className={Styles.body}>
-            <Image size={30} />
-            <Input
-              type="text"
-              onChange={(e) => setEmbedLink(e.target?.value?.trim())}
-              value={embedLink}
-              placeholder="Enter any image url from web"
-            />
-            <Button onClick={onSubmitHandler} type="button">
-              Embed Link
-            </Button>
+          {
+            showPopup ? (
+              <div className={Styles.imageActionSection}>
+                <div className={Styles.header}>
+                  <ul>
+                    <li className={Styles.active}>Embed Link</li>
+                    <li className={''}>Upload</li>
+                  </ul>
+                </div>
+                <div className={Styles.body}>
+                  <RiImage2Line size={30} />
+                  <Input
+                    type="text"
+                    onChange={(e) => setEmbedLink(e.target?.value?.trim())}
+                    value={embedLink}
+                    placeholder="Enter any image url from web"
+                  />
+                  <Button onClick={onSubmitHandler} type="button">
+                    Embed Link
+                  </Button>
 
-            <span className={Styles.note}>Works with any image from web</span>
-          </div>
+                  <span className={Styles.note}>Works with any image from web</span>
+                </div>
+              </div>
+            ) : null
+          }
         </div>
       )}
     </div>
