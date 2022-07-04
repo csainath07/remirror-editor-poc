@@ -8,7 +8,12 @@ import {
   NodeFormattingExtension,
   HardBreakExtension,
   CodeExtension,
-  BlockquoteExtension
+  BlockquoteExtension,
+  BulletListExtension,
+  LinkExtension,
+  OrderedListExtension,
+  TaskListExtension,
+  StrikeExtension
 } from "remirror/extensions";
 import {
   useRemirror,
@@ -46,6 +51,11 @@ export const Editor = ({
       new NodeFormattingExtension(),
       new CodeExtension(),
       new BlockquoteExtension(),
+      new StrikeExtension(),
+      new BulletListExtension(),
+      new LinkExtension({ autoLink: true }),
+      new OrderedListExtension(),
+      new TaskListExtension(),
       new PlaceholderExtension({ placeholder }),
     ],
     builtin: { persistentSelectionClass: 'selection' },

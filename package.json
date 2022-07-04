@@ -13,6 +13,7 @@
     "react-code-blocks": "0.0.9-0",
     "react-dom": "^18.1.0",
     "react-feather": "^2.0.10",
+    "react-icons": "^4.4.0",
     "react-scripts": "5.0.1",
     "react-sortablejs": "^6.1.4",
     "remirror": "^1.0.75",

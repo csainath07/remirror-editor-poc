@@ -4,7 +4,23 @@ import {
   useChainedCommands,
   FloatingWrapper,
 } from "@remirror/react";
-import { Bold, Italic, Underline, Type, AlignCenter, AlignLeft, AlignRight, Code } from "react-feather";
+import {
+  RiBold,
+  RiItalic,
+  RiUnderline,
+  RiText,
+  RiCodeLine,
+  RiAlignCenter,
+  RiAlignLeft,
+  RiAlignRight,
+  RiStrikethrough,
+  RiH1,
+  RiH2,
+  RiH3,
+  RiListOrdered,
+  RiListUnordered,
+  RiListCheck,
+} from "react-icons/ri";
 import { Button, Dropdown, Menu } from "antd";
 
 import Styles from "./Editor.module.css";
@@ -29,7 +45,8 @@ const Menus = (props) => {
                 color: active.bold() ? "#fff" : undefined,
               }}
             >
-              Heading 1
+              <RiH1 size={16} />
+              &nbsp; Heading 1
             </Button>
           ),
         },
@@ -45,7 +62,8 @@ const Menus = (props) => {
                 color: active.bold() ? "#fff" : undefined,
               }}
             >
-              Heading 2
+              <RiH2 size={16} />
+              &nbsp; Heading 2
             </Button>
           ),
         },
@@ -61,7 +79,8 @@ const Menus = (props) => {
                 color: active.bold() ? "#fff" : undefined,
               }}
             >
-              Heading 3
+              <RiH3 size={16} />
+              &nbsp; Heading 3
             </Button>
           ),
         },
@@ -73,7 +92,7 @@ const Menus = (props) => {
     <FloatingWrapper positioner={props.positioner} placement="top">
       <Dropdown overlay={menu} placement="bottom" arrow>
         <Button>
-          <Type size={16} />
+          <RiText size={16} />
         </Button>
       </Dropdown>
       <Button
@@ -85,7 +104,7 @@ const Menus = (props) => {
           color: active.bold() ? "#fff" : undefined,
         }}
       >
-        <Bold size={16} />
+        <RiBold size={16} />
       </Button>
       <Button
         onClick={() => {
@@ -96,7 +115,7 @@ const Menus = (props) => {
           color: active.italic() ? "#fff" : undefined,
         }}
       >
-        <Italic size={16} />
+        <RiItalic size={16} />
       </Button>
       <Button
         onClick={() => {
@@ -107,7 +126,18 @@ const Menus = (props) => {
           color: active.underline() ? "#fff" : undefined,
         }}
       >
-        <Underline size={16} />
+        <RiUnderline size={16} />
+      </Button>
+      <Button
+        onClick={() => {
+          chain.toggleStrike().focus().run();
+        }}
+        style={{
+          background: active.strike() ? "#ff4856" : undefined,
+          color: active.strike() ? "#fff" : undefined,
+        }}
+      >
+        <RiStrikethrough size={16} />
       </Button>
       <Button
         onClick={() => {
@@ -118,28 +148,61 @@ const Menus = (props) => {
           color: active.code() ? "#fff" : undefined,
         }}
       >
-        <Code size={16} />
+        <RiCodeLine size={16} />
       </Button>
       <Button
         onClick={() => {
           chain.centerAlign().focus().run();
         }}
       >
-        <AlignCenter size={16} />
+        <RiAlignCenter size={16} />
       </Button>
       <Button
         onClick={() => {
           chain.leftAlign().focus().run();
         }}
       >
-        <AlignLeft size={16} />
+        <RiAlignLeft size={16} />
       </Button>
       <Button
         onClick={() => {
           chain.rightAlign().focus().run();
         }}
       >
-        <AlignRight size={16} />
+        <RiAlignRight size={16} />
+      </Button>
+      <Button
+        onClick={() => {
+          chain.toggleBulletList().focus().run();
+        }}
+        style={{
+          background: active.bulletList() ? "#ff4856" : undefined,
+          color: active.bulletList() ? "#fff" : undefined,
+        }}
+      >
+        <RiListUnordered size={16} />
+      </Button>
+      <Button
+        onClick={() => {
+          chain.toggleOrderedList().focus().run();
+        }}
+        style={{
+          background: active.orderedList() ? "#ff4856" : undefined,
+          color: active.orderedList() ? "#fff" : undefined,
+        }}
+      >
+        <RiListOrdered size={16} />
+      </Button>
+      <Button
+        onClick={() => {
+          chain.toggleTaskList().focus().run();
+        }}
+        style={{
+          background: active.taskList() ? "#ff4856" : undefined,
+          color: active.taskList() ? "#fff" : undefined,
+        }}
+      >
+        <RiListCheck size={16} />
       </Button>
     </FloatingWrapper>
   );

@@ -51,6 +51,9 @@ svg.moveIcon:hover {
   border: none;
   background: transparent;
   box-shadow: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .headingMenus button:hover {
