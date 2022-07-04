@@ -4,7 +4,8 @@ export const CONTENT_TYPE = {
   VIDEO: "video",
   AUDIO: "audio",
   BOOKMARK: "bookmark",
-  CODE_SNIPPET: "code_snippet"
+  CODE_SNIPPET: "code_snippet",
+  FILE: "file"
 };
 
 export const SupportedLanguages =

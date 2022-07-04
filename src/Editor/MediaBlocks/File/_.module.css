@@ -1,0 +1,94 @@
+.mediaBlockContainer {
+  position: relative;
+}
+
+.fileActionSection {
+  padding: 10px;
+  background: #f5f5f5;
+  border: 1px solid var(--border----dark);
+  border-top: none;
+  position: absolute;
+  min-width: 350px;
+  transform: translate(50%, 0);
+  z-index: 1;
+}
+
+.emptyMediaBlockContainer {
+  padding: 10px;
+  background-color: var(--neutral-dark-mode---text2);
+  color: #808080;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all ease-in-out 0.1s;
+}
+
+.emptyMediaBlockContainer:hover {
+  background-color: var(--border----dark);
+}
+
+.emptyMediaBlockContainer p {
+  margin: 0 0 0 10px;
+}
+
+.header ul {
+  margin: 0;
+  margin-bottom: 15px;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  list-style-type: none;
+}
+
+.header li {
+  margin: 0 10px 0 0;
+  font-size: 13px;
+  padding: 0px 5px 5px;
+  cursor: pointer;
+  color: #808080;
+}
+
+.header li.active {
+  border-bottom: 1px solid #000;
+  color: #000;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.body svg {
+  color: #666;
+}
+
+.body input {
+  display: block;
+  margin: 15px 0;
+}
+
+.note {
+  margin-top: 20px;
+  display: block;
+  font-size: 11px;
+  color: #808080;
+}
+
+.filePreview {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.filePreview svg {
+  margin-right: 10px;
+}
+
+.fileSize {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: var(--less--important--info---regular);
+  color: var(--neutral-dark-mode---label);
+}

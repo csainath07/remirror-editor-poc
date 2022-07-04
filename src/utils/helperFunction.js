@@ -10,14 +10,15 @@ export const EMPTY_BLOCK = (options) => {
     defaultTag: options?.tag || "p",
     type: options?.type || CONTENT_TYPE["HTML"],
     content: {
-      html: "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+      html: "",
       imageEmbedUrl: "",
       videoEmbedUrl: "",
       bookmarkEmbedUrl: "",
       codeSnippet: {
         code: '',
         language: ''
-      }
+      },
+      uploadedFile: ''
     },
   };
 };
@@ -89,3 +90,11 @@ export const getBase64 = (img, callback) => {
   reader.addEventListener('load', () => callback(reader.result));
   reader.readAsDataURL(img);
 };
+
+export const fileSize = (bytes) => {
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  if (bytes === 0) return 'n/a'
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+  if (i === 0) return `${bytes} ${sizes[i]}`
+  return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
+}

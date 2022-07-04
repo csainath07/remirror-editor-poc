@@ -9,6 +9,7 @@ import {
   AudioBlock,
   BookmarkBlock,
   CodeSnippetBlock,
+  FileBlock,
 } from "./MediaBlocks";
 import { CONTENT_TYPE } from "../utils/constant";
 import {
@@ -22,7 +23,7 @@ import {
 import Styles from "./Editor.module.css";
 
 const EditorPage = ({
-  placeholder = "Type '/' for commands",
+  placeholder = "Type 'Ctrl + /' or 'Cmd + /' for commands",
   onChange = () => {},
   blocks = [],
   isDeleteOptionVisible = false,
@@ -87,6 +88,7 @@ const EditorPage = ({
       case CONTENT_TYPE["AUDIO"]:
       case CONTENT_TYPE["BOOKMARK"]:
       case CONTENT_TYPE["CODE_SNIPPET"]:
+      case CONTENT_TYPE["FILE"]:
         insertNewBlock(
           currentBlockIndex,
           blocks,
@@ -198,6 +200,18 @@ const EditorPage = ({
                     },
                   },
                 },
+                index
+              );
+            }}
+          />
+        );
+      case CONTENT_TYPE["FILE"]:
+        return (
+          <FileBlock
+            data={block}
+            onFileUpload={({ key, file }) => {
+              updateBlocks(
+                { ...block, content: { ...block.content, [key]: file } },
                 index
               );
             }}

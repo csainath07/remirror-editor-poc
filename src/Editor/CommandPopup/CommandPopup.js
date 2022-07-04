@@ -1,4 +1,4 @@
-import { Type, Image, Film, Volume2, Bookmark, Terminal } from "react-feather";
+import { RiText, RiTerminalLine, RiImageLine, RiMicLine, RiMovieLine, RiBookmarkLine, RiAttachmentLine } from "react-icons/ri";
 import { CONTENT_TYPE } from "../../utils/constant";
 import Styles from "./_.module.css";
 
@@ -9,7 +9,7 @@ const COMMANDS = {
     options: [
       {
         id: "command-basic_p",
-        icon: <Type size={20} />,
+        icon: <RiText size={20} />,
         label: "Normal Text",
         subText: "Just start writing with pain text",
         tag: "p",
@@ -22,7 +22,7 @@ const COMMANDS = {
     options: [
       {
         id: "command-basic_code",
-        icon: <Terminal size={20} />,
+        icon: <RiTerminalLine size={20} />,
         label: "Code Snippet",
         subText: "Capture a code snippet",
         tag: "code",
@@ -35,7 +35,7 @@ const COMMANDS = {
     options: [
       {
         id: "command-media_img",
-        icon: <Image size={20} />,
+        icon: <RiImageLine size={20} />,
         label: "Image",
         subText: "Upload or Embed with link",
         tag: "div",
@@ -43,7 +43,7 @@ const COMMANDS = {
       },
       {
         id: "command-media_video",
-        icon: <Film size={20} />,
+        icon: <RiMovieLine size={20} />,
         label: "Video",
         subText: "Upload or Embed with link",
         tag: "div",
@@ -51,7 +51,7 @@ const COMMANDS = {
       },
       {
         id: "command-media_audio",
-        icon: <Volume2 size={20} />,
+        icon: <RiMicLine size={20} />,
         label: "Audio",
         subText: "Upload or Embed with link",
         tag: "div",
@@ -59,11 +59,19 @@ const COMMANDS = {
       },
       {
         id: "command-media_bookmark",
-        icon: <Bookmark size={20} />,
+        icon: <RiBookmarkLine size={20} />,
         label: "Bookmark Web Url",
         subText: "Bookmark web url",
         tag: "div",
         type: CONTENT_TYPE["BOOKMARK"],
+      },
+      {
+        id: "command-media_attachments",
+        icon: <RiAttachmentLine size={20} />,
+        label: "File",
+        subText: "Upload File",
+        tag: "div",
+        type: CONTENT_TYPE["FILE"],
       },
     ],
   },

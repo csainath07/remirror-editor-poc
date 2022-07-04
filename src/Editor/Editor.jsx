@@ -102,7 +102,7 @@ export const EditorBindings = ({ events, blockId, singleLine }) => {
   const chain = useChainedCommands();
 
   useKeymaps({
-    "Alt-c": () => {
+    "Alt-n": () => {
       events?.enter?.();
       return true;
     },
@@ -112,7 +112,7 @@ export const EditorBindings = ({ events, blockId, singleLine }) => {
       }
       return true;
     },
-    "/": () => {
+    "mod-/": () => {
       events?.command?.({ blockId });
       return true;
     },
