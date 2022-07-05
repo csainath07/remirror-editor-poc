@@ -92,3 +92,8 @@
   font-size: var(--less--important--info---regular);
   color: var(--neutral-dark-mode---label);
 }
+
+.uploadHelpText {
+  font-size: var(--paragraph---p3---medium);
+  color: var(--neutral-dark-mode---label);
+}

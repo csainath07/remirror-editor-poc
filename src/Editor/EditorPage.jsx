@@ -27,6 +27,7 @@ const EditorPage = ({
   onChange = () => {},
   blocks = [],
   isDeleteOptionVisible = false,
+  editable = false,
 }) => {
   const [commandPopup, setCommandPopup] = useState({
     isOpen: false,
@@ -124,6 +125,7 @@ const EditorPage = ({
         return (
           <ImageBlock
             data={block}
+            editable={editable}
             onEmbedLinkSubmit={({ key, embedLink }) => {
               updateBlocks(
                 { ...block, content: { ...block.content, [key]: embedLink } },
@@ -136,6 +138,7 @@ const EditorPage = ({
         return (
           <VideoBlock
             data={block}
+            editable={editable}
             onEmbedLinkSubmit={({ key, embedLink }) => {
               updateBlocks(
                 { ...block, content: { ...block.content, [key]: embedLink } },
@@ -148,6 +151,7 @@ const EditorPage = ({
         return (
           <AudioBlock
             data={block}
+            editable={editable}
             onEmbedLinkSubmit={({ key, embedLink }) => {
               updateBlocks(
                 { ...block, content: { ...block.content, [key]: embedLink } },
@@ -160,6 +164,7 @@ const EditorPage = ({
         return (
           <BookmarkBlock
             data={block}
+            editable={editable}
             onEmbedLinkSubmit={({ key, embedLink }) => {
               updateBlocks(
                 { ...block, content: { ...block.content, [key]: embedLink } },
@@ -172,7 +177,7 @@ const EditorPage = ({
         return (
           <CodeSnippetBlock
             data={block}
-            readOnly={false}
+            editable={editable}
             onCodeChange={(value) => {
               updateBlocks(
                 {
@@ -209,6 +214,7 @@ const EditorPage = ({
         return (
           <FileBlock
             data={block}
+            editable={editable}
             onFileUpload={({ key, file }) => {
               updateBlocks(
                 { ...block, content: { ...block.content, [key]: file } },
@@ -219,10 +225,13 @@ const EditorPage = ({
         );
       case CONTENT_TYPE["HTML"]:
       default:
-        return (
+        return !editable && !block?.content?.html ? (
+          ""
+        ) : (
           <Editor
             key={block.id}
             id={block.id}
+            editable={editable}
             placeholder={placeholder}
             initialContent={block?.content?.html || ""}
             onChange={(newValue) =>
@@ -271,30 +280,36 @@ const EditorPage = ({
         {blocks.map((block, index) => (
           <div className={Styles.editableBlockContainer} key={block.id}>
             <div className={Styles.blockOptions}>
-              <Icon
-                size={16}
-                icon="plusLine"
-                className={Styles.addBlockIcon}
-                onClick={(e) => {
-                  const { x, y } = getMouseClickCoordinates(e);
-                  handleCommandPopup({
-                    blockId: block.id,
-                    x: y + 10,
-                    y: x + 10,
-                  });
-                }}
-              />
-              {isDeleteOptionVisible ? (
-                <>
-                  <Icon
-                    icon="dustbinFill"
-                    size={16}
-                    className={Styles.removeBlockIcon}
-                    onClick={() => deleteBlock(block.id)}
-                  />
-                  <Icon icon="dragFill" size={16} className={Styles.moveIcon} />
-                </>
-              ) : null}
+              <div className={!editable ? "hide" : ""}>
+                <Icon
+                  size={16}
+                  icon="plusLine"
+                  className={Styles.addBlockIcon}
+                  onClick={(e) => {
+                    const { x, y } = getMouseClickCoordinates(e);
+                    handleCommandPopup({
+                      blockId: block.id,
+                      x: y + 10,
+                      y: x + 10,
+                    });
+                  }}
+                />
+                {isDeleteOptionVisible ? (
+                  <>
+                    <Icon
+                      icon="dustbinFill"
+                      size={16}
+                      className={Styles.removeBlockIcon}
+                      onClick={() => deleteBlock(block.id)}
+                    />
+                    <Icon
+                      icon="dragFill"
+                      size={16}
+                      className={Styles.moveIcon}
+                    />
+                  </>
+                ) : null}
+              </div>
             </div>
             <div className={Styles.contentBlockContainer}>
               {/* Render different type of content block */}

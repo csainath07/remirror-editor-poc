@@ -1,10 +1,10 @@
 /* eslint-disable no-useless-escape */
 import { useState } from "react";
 import { RiVideoLine } from "react-icons/ri";
-import { Input, Button } from 'antd';
+import { Input, Button, Tag } from 'antd';
 import Styles from "./_.module.css";
 
-const VideoBlock = ({ data, onEmbedLinkSubmit }) => {
+const VideoBlock = ({ data, onEmbedLinkSubmit, editable = false }) => {
   const [embedLink, setEmbedLink] = useState(
     data?.content?.videoEmbedUrl || ""
   );
@@ -38,18 +38,18 @@ const VideoBlock = ({ data, onEmbedLinkSubmit }) => {
           src={data?.content?.videoEmbedUrl}
         ></iframe>
       ) : (
-        <div className={Styles.mediaBlockContainer}>
+        <div className={` ${!editable ? 'hide' : ''} ${Styles.mediaBlockContainer}`}>
           <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
             <RiVideoLine size={25} />
             <p>Add a video</p>
           </div>
           {
-            showPopup ? (
+            showPopup && editable ? (
               <div className={Styles.videoActionSection}>
                 <div className={Styles.header}>
                   <ul>
                     <li className={Styles.active}>Embed Link</li>
-                    <li className={''}>Upload</li>
+                    <li className={''}>Upload <Tag color="red" className={Styles.badgeLabel}>Coming Soon!!</Tag></li>
                   </ul>
                 </div>
                 <div className={Styles.body}>

@@ -4,7 +4,7 @@ import { Input, Button } from 'antd';
 import BookmarkPreview from "./BookmarkPreview";
 import Styles from "./_.module.css";
 
-const BookmarkBlock = ({ data, onEmbedLinkSubmit }) => {
+const BookmarkBlock = ({ data, onEmbedLinkSubmit, editable = false }) => {
   const [embedLink, setEmbedLink] = useState(
     data?.content?.bookmarkEmbedUrl || ""
   );
@@ -44,16 +44,16 @@ const BookmarkBlock = ({ data, onEmbedLinkSubmit }) => {
           title={linkMetaData?.["title"]}
           description={linkMetaData?.["ogp"]?.["og:description"]?.[0]}
           image={linkMetaData?.["ogp"]?.["og:image"]?.[0]}
-          url={data?.content?.bookmarkEmbedUrl}
+          url={data?.content?.bookmarkEmbedUrl || '/'}
         />
       ) : (
-        <div className={Styles.mediaBlockContainer}>
+        <div className={`${!editable ? 'hide' : ''} ${Styles.mediaBlockContainer}`}>
           <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
             <RiBookmarkLine size={25} />
             <p>Add a bookmark</p>
           </div>
           {
-            showPopup ? (
+            showPopup && editable ? (
               <div className={Styles.bookmarkActionSection}>
                 <div className={Styles.header}>
                   <ul>

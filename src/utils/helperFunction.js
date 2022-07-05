@@ -13,6 +13,7 @@ export const EMPTY_BLOCK = (options) => {
       html: "",
       imageEmbedUrl: "",
       videoEmbedUrl: "",
+      audioEmbedUrl: "",
       bookmarkEmbedUrl: "",
       codeSnippet: {
         code: '',
@@ -21,6 +22,107 @@ export const EMPTY_BLOCK = (options) => {
       uploadedFile: ''
     },
   };
+};
+
+export const DUMMY_BLOCKS = () => {
+  return [{
+    id: uid(),
+    defaultTag: "p",
+    type: CONTENT_TYPE["HTML"],
+    content: {
+      html: "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+      imageEmbedUrl: "",
+      videoEmbedUrl: "",
+      bookmarkEmbedUrl: "",
+      codeSnippet: {
+        code: '',
+        language: ''
+      },
+      uploadedFile: ''
+    },
+  },
+  {
+    id: uid(),
+    defaultTag: "p",
+    type: CONTENT_TYPE["CODE_SNIPPET"],
+    content: {
+      html: "",
+      imageEmbedUrl: "",
+      videoEmbedUrl: "",
+      bookmarkEmbedUrl: "",
+      codeSnippet: {
+        code: 'console.log("Hello World");',
+        language: 'jsx'
+      },
+      uploadedFile: ''
+    },
+  },
+  {
+    id: uid(),
+    defaultTag: "p",
+    type: CONTENT_TYPE["Image"],
+    content: {
+      html: "",
+      imageEmbedUrl: "https://cdn.pixabay.com/photo/2021/10/07/15/12/wine-6688901_1280.jpg",
+      videoEmbedUrl: "",
+      bookmarkEmbedUrl: "",
+      codeSnippet: {
+        code: '',
+        language: ''
+      },
+      uploadedFile: ''
+    },
+  },
+  {
+    id: uid(),
+    defaultTag: "p",
+    type: CONTENT_TYPE["VIDEO"],
+    content: {
+      html: "",
+      imageEmbedUrl: "",
+      videoEmbedUrl: "https://www.youtube.com/watch?v=oO9lLFZrWcQ",
+      bookmarkEmbedUrl: "",
+      codeSnippet: {
+        code: '',
+        language: ''
+      },
+      uploadedFile: ''
+    },
+  },
+  {
+    id: uid(),
+    defaultTag: "p",
+    type: CONTENT_TYPE["AUDIO"],
+    content: {
+      html: "",
+      imageEmbedUrl: "",
+      videoEmbedUrl: "",
+      audioEmbedUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      bookmarkEmbedUrl: "",
+      codeSnippet: {
+        code: '',
+        language: ''
+      },
+      uploadedFile: ''
+    },
+  },
+  {
+    id: uid(),
+    defaultTag: "p",
+    type: CONTENT_TYPE["BOOKMARK"],
+    content: {
+      html: "",
+      imageEmbedUrl: "",
+      videoEmbedUrl: "",
+      bookmarkEmbedUrl: "https://www.google.com",
+      codeSnippet: {
+        code: '',
+        language: ''
+      },
+      uploadedFile: ''
+    },
+  }
+]
 };
 
 export const addNewBlocks = ({

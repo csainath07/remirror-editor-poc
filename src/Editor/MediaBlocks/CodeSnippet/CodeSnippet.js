@@ -8,7 +8,7 @@ import Styles from './CodeSnippet.module.css';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, readOnly = false }) => {
+const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, editable = false }) => {
     return (
         <div className={Styles.codeSnippetContainer}>
             <CodeBlock
@@ -23,7 +23,7 @@ const CodeSnippetBlock = ({ data, onCodeChange, onLanguageChange, readOnly = fal
                   }}
             />
             {
-                !readOnly ? (
+                editable ? (
                     <div className={Styles.codeContainer}>
                         <TextArea
                             placeholder='Write your code here...'

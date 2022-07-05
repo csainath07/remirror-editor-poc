@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Input, Button } from 'antd';
+import { Input, Button, Tag } from 'antd';
 import { RiVolumeUpLine } from "react-icons/ri";
 import Styles from "./_.module.css";
 
-const AudioBlock = ({ data, onEmbedLinkSubmit }) => {
+const AudioBlock = ({ data, onEmbedLinkSubmit, editable = false }) => {
   const [embedLink, setEmbedLink] = useState(
     data?.content?.audioEmbedUrl || ""
   );
@@ -24,18 +24,18 @@ const AudioBlock = ({ data, onEmbedLinkSubmit }) => {
           controls
         />
       ) : (
-        <div className={Styles.mediaBlockContainer}>
+        <div className={`${!editable ? 'hide' : ''} ${Styles.mediaBlockContainer}`}>
           <div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
             <RiVolumeUpLine size={25} />
             <p>Add an audio</p>
           </div>
           {
-            showPopup ? (
+            showPopup && editable ? (
               <div className={Styles.audioActionSection}>
                 <div className={Styles.header}>
                   <ul>
                     <li className={Styles.active}>Embed Link</li>
-                    <li className={''}>Upload</li>
+                    <li className={''}>Upload <Tag color="red" className={Styles.badgeLabel}>Coming Soon!!</Tag></li>
                   </ul>
                 </div>
                 <div className={Styles.body}>

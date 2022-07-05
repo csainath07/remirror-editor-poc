@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Upload } from 'antd';
+import { Upload, Tag } from 'antd';
 import { RiAttachmentLine } from "react-icons/ri";
 import { fileSize } from '../../../utils/helperFunction';
 import Styles from "./_.module.css";
 
 const { Dragger } = Upload;
 
-const FileBlock = ({ data, onFileUpload }) => {
+const FileBlock = ({ data, onFileUpload, editable = false }) => {
 	const [showPopup, setShowPopup] = useState(true);
 
 	const onFileChangeHandler = (info) => {
@@ -18,16 +18,17 @@ const FileBlock = ({ data, onFileUpload }) => {
 				<div className={Styles.filePreview}>
 					<RiAttachmentLine size={20} />
 					<span>{data?.content?.uploadedFile?.name || ''}</span>
-					<span className={Styles.fileSize}>({fileSize(data?.content?.uploadedFile?.size || 0)})</span>
+					<span className={Styles.fileSize}>({fileSize(data?.content?.uploadedFile?.size || 0)})</span>&nbsp;
+					<Tag color="red"><strong>Note:</strong> Read file feature is <strong>disabled!!</strong></Tag>
 				</div>
 			) : (
-				<div className={Styles.mediaBlockContainer}>
+				<div className={`${!editable ? 'hide' : ''} ${Styles.mediaBlockContainer}`}>
 					<div className={Styles.emptyMediaBlockContainer} onClick={() => setShowPopup(!showPopup)}>
 						<RiAttachmentLine size={25} />
 						<p>Upload a file</p>
 					</div>
 					{
-						showPopup ? (
+						showPopup && editable ? (
 							<div className={Styles.fileActionSection}>
 								<div className={Styles.header}>
 									<ul>
@@ -41,7 +42,7 @@ const FileBlock = ({ data, onFileUpload }) => {
 										showUploadList={false}
 									>
 										<RiAttachmentLine size={30} />
-										<p>Click or drag file to this area to upload</p>
+										<p className={Styles.uploadHelpText}>Click or drag file to this area to upload</p>
 									</Dragger>
 								</div>
 							</div>

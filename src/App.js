@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from 'antd';
 import { Editor } from './Editor/Editor';
 import EditorPage from "./Editor/EditorPage";
 import { CoverUploader } from './ui'
@@ -16,11 +17,12 @@ export default function App() {
     shortDescription: "",
     blocks: [EMPTY_BLOCK()]
   });
+  const [editable, setEditable] = useState(true);
 
   return (
     <div className="App">
       <div className="cover-photo">
-        <CoverUploader editable/>
+        <CoverUploader editable={editable} />
       </div>
       <div className="title">
         <Editor
@@ -29,6 +31,7 @@ export default function App() {
           onChange={(value) => setDetails({ ...details, title: value })}
           singleLine
           formatting={false}
+          editable={editable}
         />
       </div>
       <div className="short-description">
@@ -36,6 +39,7 @@ export default function App() {
           placeholder="Short description"
           initialContent={details.shortDescription}
           onChange={(value) => setDetails({ ...details, shortDescription: value })}
+          editable={editable}
         />
       </div>
       <EditorPage
@@ -45,7 +49,16 @@ export default function App() {
           blocks: updatedBlocks
         })}
         isDeleteOptionVisible={details.blocks.length > 1}
+        editable={editable}
       />
+
+      <div className={"actionButtons"}>
+        <Button type="primary" onClick={() => setEditable(!editable)}>
+          {
+            editable ? 'Read Only' : 'Edit'
+          }
+        </Button>
+      </div>
     </div>
   );
 }
