@@ -13,6 +13,7 @@ import {
   LinkExtension,
   OrderedListExtension,
   TaskListExtension,
+  MarkdownExtension,
   StrikeExtension
 } from "remirror/extensions";
 import {
@@ -56,6 +57,7 @@ export const Editor = ({
       new LinkExtension({ autoLink: true }),
       new OrderedListExtension(),
       new TaskListExtension(),
+      new MarkdownExtension(),
       new PlaceholderExtension({ placeholder }),
     ],
     builtin: { persistentSelectionClass: 'selection' },
@@ -79,7 +81,7 @@ export const Editor = ({
         autoFocus={true}
         {...rest}
       >
-        {formatting ? (
+        {formatting && editable ? (
           <Menus defaultTag={defaultTag} positioner={selectionPositioner} />
         ) : null}
         <EditorBindings
